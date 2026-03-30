@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurante Gran Bahía — Arenales del Sol</title>
+  <meta name="description" content="Restaurante Gran Bahía en Arenales del Sol. Arroces, mariscos y pescados frescos de la bahía de Santa Pola con vistas al Mediterráneo.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:    #1A3A5C;
+      --blue:    #4A90D9;
+      --sky:     #D6EAF8;
+      --gold:    #C9A84C;
+      --gold-lt: #F5E6C0;
+      --green:   #6AAF7E;
+      --green-lt:#D5EDD9;
+      --beige:   #F8F2E6;
+      --cream:   #FFFEF9;
+      --text:    #2C3E50;
+      --muted:   #7F8C8D;
+      --border:  #E8DDD0;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      transition: all 0.4s ease;
+      padding: 20px 0;
+    }
+
+    nav.scrolled {
+      background: rgba(255,254,249,0.97);
+      backdrop-filter: blur(10px);
+      padding: 12px 0;
+      box-shadow: 0 1px 20px rgba(26,58,92,0.08);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: white;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      transition: color 0.4s;
+    }
+
+    nav.scrolled .nav-logo { color: var(--navy); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.9);
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      transition: color 0.3s;
+    }
+
+    nav.scrolled .nav-links a { color: var(--text); }
+    .nav-links a:hover { color: var(--gold) !important; }
+
+    .nav-cta {
+      background: var(--gold) !important;
+      color: white !important;
+      padding: 9px 22px;
+      border-radius: 50px;
+      font-weight: 600 !important;
+      transition: background 0.3s, transform 0.2s !important;
+    }
+
+    .nav-cta:hover {
+      background: #b8933e !important;
+      transform: translateY(-1px);
+    }
+
+    /* ─── HERO ────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/87/c0/3d/restaurante-gran-bahia.jpg');
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.05);
+      transition: transform 8s ease;
+    }
+
+    .hero:hover .hero-bg { transform: scale(1); }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(10,28,50,0.45) 0%,
+        rgba(10,28,50,0.35) 50%,
+        rgba(10,28,50,0.65) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      text-align: center;
+      color: white;
+      padding: 0 24px;
+      max-width: 800px;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      border: 1px solid rgba(201,168,76,0.5);
+      padding: 6px 18px;
+      border-radius: 50px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(48px, 8vw, 78px);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold-lt);
+    }
+
+    .hero p {
+      font-size: 17px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.88);
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: white;
+      padding: 14px 34px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.3px;
+      transition: all 0.3s;
+      box-shadow: 0 4px 20px rgba(201,168,76,0.4);
+    }
+
+    .btn-primary:hover {
+      background: #b8933e;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(201,168,76,0.5);
+    }
+
+    .btn-ghost {
+      background: rgba(255,255,255,0.12);
+      color: white;
+      padding: 14px 34px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+      border: 1px solid rgba(255,255,255,0.35);
+      transition: all 0.3s;
+      backdrop-filter: blur(4px);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.22);
+      border-color: rgba(255,255,255,0.6);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.6);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.6), transparent);
+      animation: scrollAnim 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollAnim {
+      0%, 100% { opacity: 1; transform: scaleY(1); }
+      50% { opacity: 0.4; transform: scaleY(0.7); }
+    }
+
+    /* ─── STATS BAR ───────────────────────────────────── */
+    .stats-bar {
+      background: var(--navy);
+      color: white;
+      padding: 28px 0;
+    }
+
+    .stats-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 0 20px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .stat-item:last-child { border-right: none; }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--gold-lt);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* ─── SECTIONS ────────────────────────────────────── */
+    section { padding: 90px 0; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .section-tag {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .section-sub {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    /* ─── ABOUT ───────────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-images {
+      position: relative;
+    }
+
+    .about-img-main {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(26,58,92,0.15);
+    }
+
+    .about-img-float {
+      position: absolute;
+      bottom: -30px;
+      right: -30px;
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 4px solid white;
+      box-shadow: 0 12px 40px rgba(26,58,92,0.2);
+    }
+
+    .about-text { }
+
+    .about-text p {
+      font-size: 15px;
+      color: #4a5568;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .about-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--navy);
+    }
+
+    .feature-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--sky);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    /* ─── MENU ────────────────────────────────────────── */
+    .menu-section { background: var(--beige); }
+
+    .menu-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .menu-header .section-sub { margin: 0 auto; }
+
+    .menu-tabs {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .menu-tab {
+      padding: 9px 20px;
+      border-radius: 50px;
+      border: 1.5px solid var(--border);
+      background: white;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.25s;
+      white-space: nowrap;
+    }
+
+    .menu-tab.active,
+    .menu-tab:hover {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: white;
+    }
+
+    .menu-panel { display: none; }
+    .menu-panel.active { display: block; }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .menu-item {
+      background: white;
+      border-radius: 10px;
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      border: 1px solid transparent;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .menu-item:hover {
+      border-color: var(--border);
+      box-shadow: 0 2px 12px rgba(26,58,92,0.06);
+    }
+
+    .menu-item-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .menu-item-note {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .menu-item-badge {
+      font-size: 10px;
+      color: var(--green);
+      font-weight: 600;
+    }
+
+    .menu-item-price {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .wine-item {
+      background: white;
+      border-radius: 10px;
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      border: 1px solid transparent;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .wine-item:hover {
+      border-color: var(--border);
+      box-shadow: 0 2px 12px rgba(26,58,92,0.06);
+    }
+
+    .wine-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .wine-desc {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+      line-height: 1.5;
+    }
+
+    .wine-price {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* ─── GALLERY ─────────────────────────────────────── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto auto;
+      gap: 12px;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 12px;
+      position: relative;
+    }
+
+    .gallery-item.tall {
+      grid-row: span 2;
+    }
+
+    .gallery-item.wide {
+      grid-column: span 2;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      min-height: 200px;
+      transition: transform 0.5s ease;
+      display: block;
+    }
+
+    .gallery-item.tall img { min-height: 420px; }
+    .gallery-item.wide img { min-height: 240px; }
+
+    .gallery-item:hover img { transform: scale(1.05); }
+
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(26,58,92,0);
+      transition: background 0.3s;
+    }
+
+    .gallery-item:hover::after {
+      background: rgba(26,58,92,0.1);
+    }
+
+    /* ─── REVIEWS ─────────────────────────────────────── */
+    .reviews-section { background: var(--navy); }
+
+    .reviews-section .section-tag { color: var(--gold-lt); }
+    .reviews-section .section-title { color: white; }
+
+    .reviews-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+    }
+
+    .tripadvisor-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255,255,255,0.08);
+      padding: 14px 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .ta-score {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: white;
+      line-height: 1;
+    }
+
+    .ta-info { }
+    .ta-stars { color: #34C880; font-size: 16px; margin-bottom: 2px; }
+    .ta-label { font-size: 11px; color: rgba(255,255,255,0.5); }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .review-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 24px;
+      transition: background 0.3s;
+    }
+
+    .review-card:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .review-stars {
+      color: var(--gold-lt);
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    .review-text {
+      font-size: 14px;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.7;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+
+    .review-author {
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.5px;
+    }
+
+    /* ─── HORARIOS ────────────────────────────────────── */
+    .hours-section { }
+
+    .hours-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .hours-table { width: 100%; }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hours-row:first-child { padding-top: 0; }
+
+    .hours-day {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .hours-time {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .hours-time.closed {
+      color: #E74C3C;
+      font-weight: 500;
+    }
+
+    .hours-time.open {
+      color: var(--green);
+      font-weight: 500;
+    }
+
+    .contact-card {
+      background: var(--beige);
+      border-radius: 20px;
+      padding: 36px;
+    }
+
+    .contact-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 24px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--sky);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .contact-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+
+    .contact-value {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--navy);
+      text-decoration: none;
+    }
+
+    .contact-value:hover { color: var(--blue); }
+
+    .reserve-btn {
+      display: block;
+      text-align: center;
+      background: var(--navy);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      margin-top: 28px;
+      transition: all 0.3s;
+    }
+
+    .reserve-btn:hover {
+      background: var(--blue);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(26,58,92,0.25);
+    }
+
+    /* ─── MAP ─────────────────────────────────────────── */
+    .map-section { padding: 0; }
+
+    .map-section iframe {
+      width: 100%;
+      height: 380px;
+      border: none;
+      display: block;
+    }
+
+    /* ─── FOOTER ──────────────────────────────────────── */
+    footer {
+      background: #0D2035;
+      color: rgba(255,255,255,0.5);
+      padding: 48px 0 32px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 24px;
+    }
+
+    .footer-brand h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: white;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .footer-brand p {
+      font-size: 13px;
+      line-height: 1.7;
+      max-width: 280px;
+    }
+
+    .footer-col h4 {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul { list-style: none; }
+
+    .footer-col ul li {
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    .footer-col ul li a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover { color: var(--gold-lt); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+    }
+
+    .footer-bottom a {
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+    }
+
+    /* ─── DIVIDER ─────────────────────────────────────── */
+    .wave-divider {
+      overflow: hidden;
+      line-height: 0;
+      margin-bottom: -1px;
+    }
+
+    .wave-divider svg { display: block; }
+
+    /* ─── ANIMATIONS ──────────────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-up:nth-child(2) { transition-delay: 0.1s; }
+    .fade-up:nth-child(3) { transition-delay: 0.2s; }
+    .fade-up:nth-child(4) { transition-delay: 0.3s; }
+
+    /* ─── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+      .stat-item { border-right: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-img-float { display: none; }
+      .menu-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-item.wide { grid-column: span 1; }
+      .gallery-item.tall { grid-row: span 1; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .reviews-header { flex-direction: column; gap: 20px; align-items: flex-start; }
+      .hours-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────────────── -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Gran Bahía</a>
+    <ul class="nav-links">
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#carta">Carta</a></li>
+      <li><a href="#galeria">Galería</a></li>
+      <li><a href="#horarios">Horarios</a></li>
+      <li><a href="tel:+34966911042" class="nav-cta">Reservar Mesa</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── HERO ────────────────────────────────────────────── -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Arenales del Sol · Alicante</div>
+    <h1>Sabor a <em>Mar</em><br>Vista al Mediterráneo</h1>
+    <p>Arroces, mariscos y pescados frescos de la bahía de Santa Pola.<br>Con el sonido de las olas como banda sonora.</p>
+    <div class="hero-btns">
+      <a href="tel:+34966911042" class="btn-primary">📞 Reservar Mesa</a>
+      <a href="#carta" class="btn-ghost">Ver la Carta</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Descubrir</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ── STATS BAR ────────────────────────────────────────── -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-number">4.3★</div>
+      <div class="stat-label">TripAdvisor</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">Top 30</div>
+      <div class="stat-label">Restaurantes en Elche</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">1ª línea</div>
+      <div class="stat-label">Frente al Mar</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">Producto Fresco</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── NOSOTROS ─────────────────────────────────────────── -->
+<section id="nosotros">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-images fade-up">
+        <img
+          class="about-img-main"
+          src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/10/33/64/e5/un-sitio-unico-para-cenar.jpg"
+          alt="Terraza del Restaurante Gran Bahía con vistas al mar"
+        >
+        <img
+          class="about-img-float"
+          src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/0f/c1/b1/espectacular.jpg"
+          alt="Plato del Restaurante Gran Bahía"
+        >
+      </div>
+      <div class="about-text fade-up">
+        <div class="section-tag">Nuestra historia</div>
+        <h2 class="section-title">Un rincón único<br><em>frente al mar</em></h2>
+        <p>En Gran Bahía nos apasiona el mar y todo lo que nos ofrece. Ubicados en primera línea de playa en los Arenales del Sol, llevamos años sirviendo lo mejor de la cocina mediterránea con el horizonte azul como telón de fondo.</p>
+        <p>Nuestros arroces, elaborados con el caldo de la bahía de Santa Pola, y nuestros pescados y mariscos frescos capturados cada mañana son nuestra seña de identidad. Una cocina honesta, de temporada, con sabor a mar de verdad.</p>
+        <div class="about-features">
+          <div class="feature-item">
+            <div class="feature-icon">🌊</div>
+            <span>Primera línea de playa</span>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🦐</div>
+            <span>Marisco fresco diario</span>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🥘</div>
+            <span>Arroces de autor</span>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🌿</div>
+            <span>Opciones vegetarianas</span>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🍷</div>
+            <span>Selección de vinos</span>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">☀️</div>
+            <span>Terraza con vistas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CARTA ─────────────────────────────────────────────── -->
+<section id="carta" class="menu-section">
+  <div class="container">
+    <div class="menu-header fade-up">
+      <div class="section-tag">Lo que cocinamos</div>
+      <h2 class="section-title">Nuestra <em>Carta</em></h2>
+      <p class="section-sub">Del mar a tu mesa. Producto fresco de temporada, cocinado con tradición mediterránea.</p>
+    </div>
+
+    <div class="menu-tabs" id="menuTabs">
+      <button class="menu-tab active" data-panel="mar">Entrantes del Mar</button>
+      <button class="menu-tab" data-panel="tierra">Entrantes de la Tierra</button>
+      <button class="menu-tab" data-panel="ensaladas">Ensaladas</button>
+      <button class="menu-tab" data-panel="arroces">Nuestros Arroces</button>
+      <button class="menu-tab" data-panel="sopas">Sopas y Pastas</button>
+      <button class="menu-tab" data-panel="pescados">Pescados</button>
+      <button class="menu-tab" data-panel="carnes">Carnes</button>
+      <button class="menu-tab" data-panel="vinos">Vinos</button>
+    </div>
+
+    <!-- ENTRANTES DEL MAR -->
+    <div class="menu-panel active" id="panel-mar">
+      <div class="menu-grid">
+        <div class="menu-item"><div><div class="menu-item-name">Quisquilla Hervida</div></div><div class="menu-item-price">18 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Chipirones Salteados con Verduritas</div></div><div class="menu-item-price">14 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Cigalitas Al Ajillo</div></div><div class="menu-item-price">17 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Pescaditos</div></div><div class="menu-item-price">14 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Berberechos Al Vapor</div></div><div class="menu-item-price">10 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Boquerones Fritos</div></div><div class="menu-item-price">12 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Chopitos</div></div><div class="menu-item-price">12 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Calamares A La Romana</div></div><div class="menu-item-price">14 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Mejillones Al Vapor</div></div><div class="menu-item-price">12 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Dados de Atún con Salsa Verde</div></div><div class="menu-item-price">14 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Gambas Al Ajillo</div></div><div class="menu-item-price">12 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Fritura Variada</div></div><div class="menu-item-price">22 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Almejas A La Marinera</div></div><div class="menu-item-price">14 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Calamar de Potera A La Plancha</div></div><div class="menu-item-price">17 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Zamburiñas</div></div><div class="menu-item-price">3 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Gambas A La Plancha</div><div class="menu-item-note">Según mercado</div></div><div class="menu-item-price">—</div></div>
+      </div>
+    </div>
+
+    <!-- ENTRANTES DE LA TIERRA -->
+    <div class="menu-panel" id="panel-tierra">
+      <div class="menu-grid">
+        <div class="menu-item"><div><div class="menu-item-name">Revuelto de Morcilla</div></div><div class="menu-item-price">10 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Jamón Ibérico y Queso</div></div><div class="menu-item-price">20 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Solomillo Trinchado con Ajetes</div></div><div class="menu-item-price">20 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Patatas Bravas</div></div><div class="menu-item-price">8 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Queso Fresco A La Plancha</div></div><div class="menu-item-price">8.50 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Patatas Voladoras con Ibérico y Huevo</div></div><div class="menu-item-price">15 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Revuelto de Trigueros</div></div><div class="menu-item-price">10 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Croquetas Caseras</div><div class="menu-item-note">por unidad</div></div><div class="menu-item-price">2 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Lacón Ahumado</div></div><div class="menu-item-price">11 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Parrillada de Verduras</div><div class="menu-item-badge">🌿 Vegetariano</div></div><div class="menu-item-price">12 €</div></div>
+      </div>
+    </div>
+
+    <!-- ENSALADAS -->
+    <div class="menu-panel" id="panel-ensaladas">
+      <div class="menu-grid">
+        <div class="menu-item"><div><div class="menu-item-name">Ensalada Templada con Foie</div></div><div class="menu-item-price">13 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Tomate y Cogollos con Anchoas</div></div><div class="menu-item-price">13 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Ensalada Mixta</div><div class="menu-item-badge">🌿 Vegetariano</div></div><div class="menu-item-price">10 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Ensalada de Ahumados</div></div><div class="menu-item-price">13 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Ensalada con Queso y Frutos Secos</div><div class="menu-item-badge">🌿 Vegetariano</div></div><div class="menu-item-price">13 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Tomate Trinchado con Capellán</div></div><div class="menu-item-price">13 €</div></div>
+      </div>
+    </div>
+
+    <!-- ARROCES -->
+    <div class="menu-panel" id="panel-arroces">
+      <div class="menu-grid">
+        <div class="menu-item"><div><div class="menu-item-name">Caldero Gran Bahía</div><div class="menu-item-note">Por encargo · Nuestra especialidad</div></div><div class="menu-item-price">25 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Arroz de Bogavante</div></div><div class="menu-item-price">21.50 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Arroz de Secreto Ibérico con Setas y Foie</div></div><div class="menu-item-price">15 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Paella Mixta</div><div class="menu-item-note">Pollo y marisco</div></div><div class="menu-item-price">14.50 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Arroz Caldoso de Marisco y Verduras</div></div><div class="menu-item-price">14.50 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Arroz de Pollo y Conejo</div></div><div class="menu-item-price">14.50 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Paella de Marisco</div></div><div class="menu-item-price">14 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Fideuá de Marisco</div></div><div class="menu-item-price">14 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Arroz Magro y Verduras</div></div><div class="menu-item-price">14 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Arroz de Verduras</div><div class="menu-item-badge">🌿 Vegetariano</div></div><div class="menu-item-price">12.50 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Arroz Negro con Ajetes</div></div><div class="menu-item-price">12.50 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Arroz a Banda</div></div><div class="menu-item-price">12 €</div></div>
+      </div>
+    </div>
+
+    <!-- SOPAS Y PASTAS -->
+    <div class="menu-panel" id="panel-sopas">
+      <div class="menu-grid">
+        <div class="menu-item"><div><div class="menu-item-name">Sopa de Fideos</div></div><div class="menu-item-price">9 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Sopa de Marisco</div></div><div class="menu-item-price">11 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Espagueti Carbonara</div></div><div class="menu-item-price">13 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Espagueti Boloñesa</div></div><div class="menu-item-price">12 €</div></div>
+      </div>
+    </div>
+
+    <!-- PESCADOS -->
+    <div class="menu-panel" id="panel-pescados">
+      <div class="menu-grid">
+        <div class="menu-item"><div><div class="menu-item-name">Dentón Salvaje A La Plancha</div></div><div class="menu-item-price">24 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Rodaballo con Ajetes y Gambas</div></div><div class="menu-item-price">20 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Dorada A La Espalda</div></div><div class="menu-item-price">17 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Lubina A La Espalda</div></div><div class="menu-item-price">17 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Lubina A La Plancha</div></div><div class="menu-item-price">16 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Dorada A La Plancha</div></div><div class="menu-item-price">16 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Merluza A La Romana</div></div><div class="menu-item-price">16 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Merluza A La Romana</div><div class="menu-item-note">Ración grande</div></div><div class="menu-item-price">25 €</div></div>
+      </div>
+    </div>
+
+    <!-- CARNES -->
+    <div class="menu-panel" id="panel-carnes">
+      <div class="menu-grid">
+        <div class="menu-item"><div><div class="menu-item-name">Solomillo de Ternera Al Foie con 2 Salsas</div></div><div class="menu-item-price">25 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Solomillo de Ternera Salsa</div></div><div class="menu-item-price">22 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Solomillo de Ternera Plancha</div></div><div class="menu-item-price">21 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Chuletas de Cordero</div></div><div class="menu-item-price">18 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Entrecotte con Salsa de Pimienta</div></div><div class="menu-item-price">17 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Entrecotte A La Plancha</div></div><div class="menu-item-price">16 €</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Escalope de Ternera</div></div><div class="menu-item-price">12 €</div></div>
+      </div>
+    </div>
+
+    <!-- VINOS -->
+    <div class="menu-panel" id="panel-vinos">
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:32px;">
+        <div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:18px;color:var(--navy);margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--gold)">🍷 Vino Tinto</h3>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div class="wine-item"><div><div class="wine-name">Cair Cuvée</div><div class="wine-desc">Ribera del Duero · Crianza</div></div><div class="wine-price">18 €</div></div>
+            <div class="wine-item"><div><div class="wine-name">El Sequé</div><div class="wine-desc">Alicante</div></div><div class="wine-price">30 €</div></div>
+            <div class="wine-item"><div><div class="wine-name">Pago de Los Capellanes</div><div class="wine-desc">Ribera del Duero · Crianza</div></div><div class="wine-price">29 €</div></div>
+            <div class="wine-item"><div><div class="wine-name">Muga</div><div class="wine-desc">Rioja Crianza</div></div><div class="wine-price">28 €</div></div>
+            <div class="wine-item"><div><div class="wine-name">Protos</div><div class="wine-desc">Ribera del Duero · 2012</div></div><div class="wine-price">22 €</div></div>
+            <div class="wine-item"><div><div class="wine-name">Carramimbre 13 Crianza</div><div class="wine-desc">Ribera del Duero</div></div><div class="wine-price">20 €</div></div>
+            <div class="wine-item"><div><div class="wine-name">Semele</div><div class="wine-desc">Ribera del Duero · 2014</div></div><div class="wine-price">19 €</div></div>
+            <div class="wine-item"><div><div class="wine-name">Luis Cañas</div><div class="wine-desc">Rioja Crianza</div></div><div class="wine-price">18 €</div></div>
+            <div class="wine-item"><div><div class="wine-name">Vivanco</div><div class="wine-desc">Rioja Crianza 2012</div></div><div class="wine-price">17 €</div></div>
+            <div class="wine-item"><div><div class="wine-name">Ramón Bilbao</div><div class="wine-desc">Rioja · Crianza 2014</div></div><div class="wine-price">17 €</div></div>
+            <div class="wine-item"><div><div class="wine-name">MO. Sierra Salinas</div><div class="wine-desc">DOP Alicante · Monastrell</div></div><div class="wine-price">15 €</div></div>
+            <div class="wine-item"><div><div class="wine-name">Luis Cañas</div><div class="wine-desc">Rioja Joven</div></div><div class="wine-price">14 €</div></div>
+            <div class="wine-item"><div><div class="wine-name">Porta Regia</div><div class="wine-desc">Monastrell · Alicante</div></div><div class="wine-price">14 €</div></div>
+            <div class="wine-item"><div><div class="wine-name">Semele ½ L</div><div class="wine-desc">Ribera del Duero · Crianza</div></div><div class="wine-price">12 €</div></div>
+          </div>
+        </div>
+        <div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:18px;color:var(--navy);margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--gold)">🥂 Vino Blanco</h3>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div class="wine-item"><div><div class="wine-name">Terras Gauda</div><div class="wine-desc">Albariño</div></div><div class="wine-price">18 €</div></div>
+            <div class="wine-item"><div><div class="wine-name">José Pariente</div><div class="wine-desc">Verdejo</div></div><div class="wine-price">17 €</div></div>
+            <div class="wine-item"><div><div class="wine-name">A Telleira</div><div class="wine-desc">Godello</div></div><div class="wine-price">14 €</div></div>
+            <div class="wine-item"><div><div class="wine-name">Porta Regia</div><div class="wine-desc">Chardonnay</div></div><div class="wine-price">14 €</div></div>
+            <div class="wine-item"><div><div class="wine-name">Bitácora</div><div class="wine-desc">Verdejo</div></div><div class="wine-price">13 €</div></div>
+            <div class="wine-item"><div><div class="wine-name">Añares Terranova</div><div class="wine-desc">Vino blanco</div></div><div class="wine-price">13 €</div></div>
+            <div class="wine-item"><div><div class="wine-name">Marina Alta. Bocopa</div><div class="wine-desc">DOP Alicante · Moscatel</div></div><div class="wine-price">13 €</div></div>
+          </div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:18px;color:var(--navy);margin:24px 0 16px;padding-bottom:8px;border-bottom:2px solid var(--gold)">🌸 Vino Rosado</h3>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div class="wine-item"><div><div class="wine-name">Chivite</div><div class="wine-desc">Garnacha</div></div><div class="wine-price">14 €</div></div>
+            <div class="wine-item"><div><div class="wine-name">Alex Sensación</div><div class="wine-desc">DOP Navarra · Garnacha</div></div><div class="wine-price">12 €</div></div>
+            <div class="wine-item"><div><div class="wine-name">Peñascal</div><div class="wine-desc">Rosado ligeramente gaseoso</div></div><div class="wine-price">9.50 €</div></div>
+            <div class="wine-item"><div><div class="wine-name">Lambrusco</div><div class="wine-desc">DOP Lambrusco</div></div><div class="wine-price">9.50 €</div></div>
+          </div>
+        </div>
+        <div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:18px;color:var(--navy);margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--gold)">✨ Champagne y Cavas</h3>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div class="wine-item"><div><div class="wine-name">Cava Juvé & Camps</div><div class="wine-desc">Brut Nature 2015</div></div><div class="wine-price">22 €</div></div>
+            <div class="wine-item"><div><div class="wine-name">Anna Codorniu</div><div class="wine-desc">Cava Brut</div></div><div class="wine-price">19 €</div></div>
+            <div class="wine-item"><div><div class="wine-name">Meu Avi Brut Nature</div><div class="wine-desc">Cava Brut Nature</div></div><div class="wine-price">13 €</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── GALERÍA ───────────────────────────────────────────── -->
+<section id="galeria">
+  <div class="container">
+    <div class="menu-header fade-up" style="margin-bottom:40px">
+      <div class="section-tag">El ambiente</div>
+      <h2 class="section-title">Vive la <em>experiencia</em></h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item tall">
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/99/a7/11/en-bord-de-plage.jpg" alt="Terraza Gran Bahía frente al mar">
+      </div>
+      <div class="gallery-item">
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/ec/ae/dc/caption.jpg" alt="Plato Gran Bahía">
+      </div>
+      <div class="gallery-item">
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/ec/ae/db/caption.jpg" alt="Arroz Gran Bahía">
+      </div>
+      <div class="gallery-item wide">
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/57/41/74/caption.jpg" alt="Vista del restaurante Gran Bahía">
+      </div>
+      <div class="gallery-item">
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/79/bf/f2/caption.jpg" alt="Marisco fresco Gran Bahía">
+      </div>
+      <div class="gallery-item">
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/92/2b/cf/caption.jpg" alt="Pescado fresco Gran Bahía">
+      </div>
+      <div class="gallery-item">
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/92/2b/ce/caption.jpg" alt="Platos Gran Bahía">
+      </div>
+      <div class="gallery-item">
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/79/bf/f1/caption.jpg" alt="Comida Gran Bahía">
+      </div>
+      <div class="gallery-item">
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/40/04/9f/caption.jpg" alt="Ambiente Gran Bahía">
+      </div>
+      <div class="gallery-item">
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/4a/0e/69/caption.jpg" alt="Interior Gran Bahía">
+      </div>
+      <div class="gallery-item">
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/ec/ae/da/caption.jpg" alt="Paella Gran Bahía">
+      </div>
+      <div class="gallery-item">
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/14/b7/a1/21/photo1jpg.jpg" alt="Plato del día Gran Bahía">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── RESEÑAS ───────────────────────────────────────────── -->
+<section id="resenas" class="reviews-section">
+  <div class="container">
+    <div class="reviews-header">
+      <div>
+        <div class="section-tag">Lo que dicen</div>
+        <h2 class="section-title">Opiniones de<br><em style="color:var(--gold-lt)">nuestros clientes</em></h2>
+      </div>
+      <div class="tripadvisor-badge">
+        <div class="ta-score">4.3</div>
+        <div class="ta-info">
+          <div class="ta-stars">★★★★☆</div>
+          <div style="font-size:13px;color:white;font-weight:600">Muy bueno</div>
+          <div class="ta-label">148 opiniones · TripAdvisor</div>
+        </div>
+      </div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card fade-up">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"El caldero Gran Bahía nos hizo levitar. Un arroz con todo el sabor del Mediterráneo, con unas vistas al mar que lo hacen todavía más especial. Volveremos sin duda."</p>
+        <div class="review-author">— ALICANTE, España · TripAdvisor</div>
+      </div>
+      <div class="review-card fade-up">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Ubicación y cocina excepcionales. Una joya en primera línea de playa. Los pescados frescos de la bahía de Santa Pola están en otro nivel. El mejor sitio para comer en los Arenales."</p>
+        <div class="review-author">— MADRID, España · TripAdvisor</div>
+      </div>
+      <div class="review-card fade-up">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Un lugar único para cenar con vistas. La terraza es preciosa al atardecer y la comida está a la altura. Los arroces son de lo mejor que hemos probado en la Costa Blanca."</p>
+        <div class="review-author">— VALENCIA, España · TripAdvisor</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:36px">
+      <a href="https://www.tripadvisor.es/Restaurant_Review-g661469-d6116884-Reviews-Gran_Bahia_Restaurant-Elche_Costa_Blanca_Province_of_Alicante_Valencian_Community.html" target="_blank" style="display:inline-block;padding:13px 30px;border:1.5px solid rgba(255,255,255,0.2);border-radius:50px;color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;font-weight:500;transition:all 0.3s" onmouseover="this.style.borderColor='rgba(255,255,255,0.5)';this.style.color='white'" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)';this.style.color='rgba(255,255,255,0.7)'">Ver todas las opiniones en TripAdvisor →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── HORARIOS & CONTACTO ───────────────────────────────── -->
+<section id="horarios">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:56px" class="fade-up">
+      <div class="section-tag">Visítanos</div>
+      <h2 class="section-title">Horarios y <em>Contacto</em></h2>
+    </div>
+    <div class="hours-grid">
+      <div class="fade-up">
+        <h3 style="font-family:'Playfair Display',serif;font-size:22px;color:var(--navy);margin-bottom:24px">Horario de apertura</h3>
+        <div class="hours-table">
+          <div class="hours-row">
+            <span class="hours-day">Lunes</span>
+            <span class="hours-time closed">Cerrado</span>
+          </div>
+          <div class="hours-row">
+            <span class="hours-day">Martes – Jueves</span>
+            <span class="hours-time open">9:30 – 17:30</span>
+          </div>
+          <div class="hours-row">
+            <span class="hours-day">Viernes</span>
+            <span class="hours-time open">9:30 – 23:30</span>
+          </div>
+          <div class="hours-row">
+            <span class="hours-day">Sábado</span>
+            <span class="hours-time open">9:30 – 23:30</span>
+          </div>
+          <div class="hours-row">
+            <span class="hours-day">Domingo</span>
+            <span class="hours-time open">9:30 – 17:30</span>
+          </div>
+        </div>
+        <div style="margin-top:20px;padding:14px 18px;background:var(--beige);border-radius:10px;font-size:13px;color:var(--muted)">
+          ☀️ En temporada alta los horarios pueden ampliarse. Llámanos para confirmar.
+        </div>
+      </div>
+      <div class="fade-up">
+        <div class="contact-card">
+          <h3>¿Hablamos?</h3>
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div>
+              <div class="contact-label">Teléfono / Reservas</div>
+              <a href="tel:+34966911042" class="contact-value">+34 966 91 10 42</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <div class="contact-label">Dirección</div>
+              <span class="contact-value">C/ San Bartolomé de Tirajana 1<br>Arenales del Sol, Elche · 03195</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🌊</div>
+            <div>
+              <div class="contact-label">Ubicación</div>
+              <span class="contact-value" style="font-size:13px;font-weight:400;color:var(--muted)">Primera línea de playa · Frente al mar</span>
+            </div>
+          </div>
+          <a href="tel:+34966911042" class="reserve-btn">📞 Llamar para reservar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MAPA ──────────────────────────────────────────────── -->
+<div class="map-section">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3148.8!2d-0.5186!3d38.1686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzjCsDEwJzA3LjAiTiAwwrAzMScwNi45Ilc!5e0!3m2!1ses!2ses!4v1680000000000!5m2!1ses!2ses&q=Restaurante+Gran+Bah%C3%ADa+Arenales+del+Sol&zoom=15"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    title="Ubicación Restaurante Gran Bahía">
+  </iframe>
+</div>
+
+<!-- ── FOOTER ────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h3>Restaurante Gran Bahía</h3>
+        <p>Arroces, mariscos y pescados frescos en primera línea de playa. Cocina mediterránea con el sabor auténtico de la bahía de Santa Pola.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Carta</h4>
+        <ul>
+          <li><a href="#carta">Entrantes del Mar</a></li>
+          <li><a href="#carta">Nuestros Arroces</a></li>
+          <li><a href="#carta">Pescados</a></li>
+          <li><a href="#carta">Carnes</a></li>
+          <li><a href="#carta">Vinos</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Información</h4>
+        <ul>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#galeria">Galería</a></li>
+          <li><a href="#horarios">Horarios</a></li>
+          <li><a href="tel:+34966911042">Reservas</a></li>
+          <li><a href="https://www.tripadvisor.es/Restaurant_Review-g661469-d6116884-Reviews-Gran_Bahia_Restaurant-Elche_Costa_Blanca_Province_of_Alicante_Valencian_Community.html" target="_blank">TripAdvisor</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Restaurante Gran Bahía · Arenales del Sol, Elche</span>
+      <span>Diseño web · <a href="#">Lokie Labs</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // NAV scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Menu tabs
+  document.getElementById('menuTabs').addEventListener('click', e => {
+    const tab = e.target.closest('.menu-tab');
+    if (!tab) return;
+    document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-' + tab.dataset.panel).classList.add('active');
+  });
+
+  // Fade-up on scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
