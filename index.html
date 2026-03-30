@@ -107,44 +107,76 @@
 
     /* ─── HERO ────────────────────────────────────────── */
     .hero {
-      position: relative;
       height: 100vh;
-      min-height: 600px;
+      min-height: 640px;
+      display: grid;
+      grid-template-columns: 52% 48%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Left column — navy background with text */
+    .hero-left {
+      background: var(--navy);
       display: flex;
       align-items: center;
-      justify-content: center;
+      padding: 120px 56px 80px 9%;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Diagonal cut on right edge of left column */
+    .hero-left::after {
+      content: '';
+      position: absolute;
+      right: -64px;
+      top: 0;
+      bottom: 0;
+      width: 128px;
+      background: var(--navy);
+      clip-path: polygon(0 0, 0 100%, 50% 100%, 50% 0);
+      /* Creates a clean angled separator */
+      clip-path: polygon(0 0, 40% 0, 100% 100%, 0 100%);
+      z-index: 1;
+    }
+
+    /* Right column — photo */
+    .hero-right {
+      position: relative;
       overflow: hidden;
     }
 
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background-image: url('https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/87/c0/3d/restaurante-gran-bahia.jpg');
-      background-size: cover;
-      background-position: center;
-      transform: scale(1.05);
-      transition: transform 8s ease;
+    .hero-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 9s ease;
+      display: block;
     }
 
-    .hero:hover .hero-bg { transform: scale(1); }
+    .hero:hover .hero-right img { transform: scale(1.04); }
 
-    .hero-overlay {
+    /* Subtle gradient on left edge of photo to blend with navy */
+    .hero-right::before {
+      content: '';
       position: absolute;
       inset: 0;
       background: linear-gradient(
-        to bottom,
-        rgba(10,28,50,0.45) 0%,
-        rgba(10,28,50,0.35) 50%,
-        rgba(10,28,50,0.65) 100%
+        to right,
+        rgba(26,58,92,0.5) 0%,
+        transparent 30%
       );
+      z-index: 1;
+      pointer-events: none;
     }
 
     .hero-content {
       position: relative;
-      text-align: center;
+      text-align: left;
       color: white;
-      padding: 0 24px;
-      max-width: 800px;
+      max-width: 520px;
+      z-index: 3;
     }
 
     .hero-tag {
@@ -154,19 +186,18 @@
       letter-spacing: 3px;
       text-transform: uppercase;
       color: var(--gold-lt);
-      border: 1px solid rgba(201,168,76,0.5);
+      border: 1px solid rgba(201,168,76,0.4);
       padding: 6px 18px;
       border-radius: 50px;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
     }
 
     .hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(48px, 8vw, 78px);
+      font-size: clamp(42px, 5vw, 68px);
       font-weight: 700;
       line-height: 1.1;
-      margin-bottom: 20px;
-      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+      margin-bottom: 22px;
     }
 
     .hero h1 em {
@@ -175,19 +206,33 @@
     }
 
     .hero p {
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 300;
-      color: rgba(255,255,255,0.88);
+      color: rgba(255,255,255,0.78);
       margin-bottom: 40px;
-      line-height: 1.7;
+      line-height: 1.8;
+      max-width: 400px;
     }
 
     .hero-btns {
       display: flex;
       gap: 14px;
-      justify-content: center;
+      justify-content: flex-start;
       flex-wrap: wrap;
     }
+
+    /* Rating badge inside hero */
+    .hero-rating {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 36px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .hero-rating .stars { color: var(--gold-lt); font-size: 14px; }
+    .hero-rating .rating-text { font-size: 12px; color: rgba(255,255,255,0.55); }
 
     .btn-primary {
       background: var(--gold);
@@ -229,28 +274,29 @@
     .hero-scroll {
       position: absolute;
       bottom: 32px;
-      left: 50%;
+      left: 26%;
       transform: translateX(-50%);
-      color: rgba(255,255,255,0.6);
-      font-size: 11px;
+      color: rgba(255,255,255,0.45);
+      font-size: 10px;
       letter-spacing: 2px;
       text-transform: uppercase;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 8px;
+      z-index: 4;
     }
 
     .scroll-line {
       width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.6), transparent);
+      height: 36px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
       animation: scrollAnim 2s ease-in-out infinite;
     }
 
     @keyframes scrollAnim {
       0%, 100% { opacity: 1; transform: scaleY(1); }
-      50% { opacity: 0.4; transform: scaleY(0.7); }
+      50% { opacity: 0.3; transform: scaleY(0.7); }
     }
 
     /* ─── STATS BAR ───────────────────────────────────── */
@@ -876,6 +922,11 @@
     /* ─── RESPONSIVE ──────────────────────────────────── */
     @media (max-width: 768px) {
       .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; grid-template-rows: 1fr; }
+      .hero-left { padding: 120px 32px 60px; align-items: flex-end; }
+      .hero-left::after { display: none; }
+      .hero-right { display: none; }
+      .hero-scroll { left: 50%; }
       .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 20px; }
       .stat-item { border-right: none; }
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -910,21 +961,37 @@
 
 <!-- ── HERO ────────────────────────────────────────────── -->
 <section class="hero" id="inicio">
-  <div class="hero-bg"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div class="hero-tag">Arenales del Sol · Alicante</div>
-    <h1>Sabor a <em>Mar</em><br>Vista al Mediterráneo</h1>
-    <p>Arroces, mariscos y pescados frescos de la bahía de Santa Pola.<br>Con el sonido de las olas como banda sonora.</p>
-    <div class="hero-btns">
-      <a href="tel:+34966911042" class="btn-primary">📞 Reservar Mesa</a>
-      <a href="#carta" class="btn-ghost">Ver la Carta</a>
+
+  <!-- LEFT — texto -->
+  <div class="hero-left">
+    <div class="hero-content">
+      <div class="hero-tag">Arenales del Sol · Alicante</div>
+      <h1>Sabor a<br><em>Mar</em></h1>
+      <p>Arroces, mariscos y pescados frescos de la bahía de Santa Pola. Con el sonido de las olas como banda sonora.</p>
+      <div class="hero-btns">
+        <a href="tel:+34966911042" class="btn-primary">📞 Reservar Mesa</a>
+        <a href="#carta" class="btn-ghost">Ver la Carta</a>
+      </div>
+      <div class="hero-rating">
+        <span class="stars">★★★★☆</span>
+        <span class="rating-text">4.3 · Muy bueno · 148 opiniones en TripAdvisor</span>
+      </div>
     </div>
   </div>
+
+  <!-- RIGHT — imagen -->
+  <div class="hero-right">
+    <img
+      src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/87/c0/3d/restaurante-gran-bahia.jpg"
+      alt="Restaurante Gran Bahía frente al mar"
+    >
+  </div>
+
   <div class="hero-scroll">
-    <span>Descubrir</span>
+    <span>Scroll</span>
     <div class="scroll-line"></div>
   </div>
+
 </section>
 
 <!-- ── STATS BAR ────────────────────────────────────────── -->
@@ -1400,15 +1467,49 @@
     document.getElementById('panel-' + tab.dataset.panel).classList.add('active');
   });
 
-  // Fade-up on scroll
+  // Scroll reveal — aplica a todos los elementos con .fade-up Y
+  // también inyecta la clase automáticamente en elementos clave
+  const revealTargets = [
+    '.stat-item',
+    '.about-text p',
+    '.feature-item',
+    '.menu-header',
+    '.menu-tabs',
+    '.menu-item',
+    '.wine-item',
+    '.gallery-item',
+    '.review-card',
+    '.hours-row',
+    '.contact-item',
+    '.contact-card',
+    '.bundle-card',
+    '.rule',
+    '.footer-brand',
+    '.footer-col',
+    'h2',
+    '.section-tag',
+    '.section-sub',
+    '.section-title',
+  ];
+
+  revealTargets.forEach(sel => {
+    document.querySelectorAll(sel).forEach(el => {
+      if (!el.classList.contains('fade-up')) el.classList.add('fade-up');
+    });
+  });
+
   const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
+    entries.forEach((e, i) => {
       if (e.isIntersecting) {
+        // Stagger delay based on position among siblings
+        const siblings = Array.from(e.target.parentNode.children);
+        const idx = siblings.indexOf(e.target);
+        e.target.style.transitionDelay = Math.min(idx * 60, 400) + 'ms';
         e.target.classList.add('visible');
         observer.unobserve(e.target);
       }
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
