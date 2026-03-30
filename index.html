@@ -166,10 +166,10 @@
 
     .hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(48px, 6vw, 76px);
+      font-size: clamp(64px, 9vw, 120px);
       font-weight: 700;
-      line-height: 1.1;
-      margin-bottom: 22px;
+      line-height: 1.05;
+      margin-bottom: 28px;
       white-space: nowrap;
     }
 
@@ -179,12 +179,12 @@
     }
 
     .hero p {
-      font-size: 16px;
+      font-size: 20px;
       font-weight: 300;
       color: rgba(255,255,255,0.82);
-      margin-bottom: 40px;
-      line-height: 1.8;
-      max-width: 480px;
+      margin-bottom: 44px;
+      line-height: 1.7;
+      max-width: 580px;
       margin-left: auto;
       margin-right: auto;
     }
@@ -276,9 +276,16 @@
 
     /* ─── STATS BAR ───────────────────────────────────── */
     .stats-bar {
-      background: var(--navy);
-      color: white;
-      padding: 28px 0;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 4;
+      background: rgba(12,38,72,0.82);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 22px 0;
     }
 
     .stats-inner {
@@ -293,7 +300,7 @@
     .stat-item {
       text-align: center;
       padding: 0 20px;
-      border-right: 1px solid rgba(255,255,255,0.1);
+      border-right: 1px solid rgba(255,255,255,0.12);
     }
 
     .stat-item:last-child { border-right: none; }
@@ -879,6 +886,39 @@
     .wave-divider svg { display: block; }
 
     /* ─── ANIMATIONS ──────────────────────────────────── */
+    /* ─── HERO LOAD ANIMATION ────────────────────────── */
+    .hero-tag,
+    .hero h1,
+    .hero p,
+    .hero-btns,
+    .hero-rating,
+    .stat-item {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .hero-tag     { transition-delay: 0.15s; }
+    .hero h1      { transition-delay: 0.35s; }
+    .hero p       { transition-delay: 0.55s; }
+    .hero-btns    { transition-delay: 0.70s; }
+    .hero-rating  { transition-delay: 0.85s; }
+    .stat-item:nth-child(1) { transition-delay: 0.95s; }
+    .stat-item:nth-child(2) { transition-delay: 1.05s; }
+    .stat-item:nth-child(3) { transition-delay: 1.15s; }
+    .stat-item:nth-child(4) { transition-delay: 1.25s; }
+
+    .hero-loaded .hero-tag,
+    .hero-loaded .hero h1,
+    .hero-loaded .hero p,
+    .hero-loaded .hero-btns,
+    .hero-loaded .hero-rating,
+    .hero-loaded .stat-item {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── SCROLL REVEAL ──────────────────────────────── */
     .fade-up {
       opacity: 0;
       transform: translateY(30px);
@@ -953,34 +993,29 @@
     </div>
   </div>
 
-  <div class="hero-scroll">
-    <span>Scroll</span>
-    <div class="scroll-line"></div>
+  <!-- STATS pinned to bottom of hero -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <div class="stat-number">4.3★</div>
+        <div class="stat-label">TripAdvisor</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">Top 30</div>
+        <div class="stat-label">Restaurantes en Elche</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">1ª línea</div>
+        <div class="stat-label">Frente al Mar</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Producto Fresco</div>
+      </div>
+    </div>
   </div>
 
 </section>
-
-<!-- ── STATS BAR ────────────────────────────────────────── -->
-<div class="stats-bar">
-  <div class="stats-inner">
-    <div class="stat-item">
-      <div class="stat-number">4.3★</div>
-      <div class="stat-label">TripAdvisor</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">Top 30</div>
-      <div class="stat-label">Restaurantes en Elche</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">1ª línea</div>
-      <div class="stat-label">Frente al Mar</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">100%</div>
-      <div class="stat-label">Producto Fresco</div>
-    </div>
-  </div>
-</div>
 
 <!-- ── NOSOTROS ─────────────────────────────────────────── -->
 <section id="nosotros">
@@ -1459,8 +1494,15 @@
 
   // Scroll reveal — aplica a todos los elementos con .fade-up Y
   // también inyecta la clase automáticamente en elementos clave
+  // Hero load animation — fires on page load
+  const hero = document.querySelector('.hero');
+  if (hero) {
+    requestAnimationFrame(() => {
+      setTimeout(() => hero.classList.add('hero-loaded'), 80);
+    });
+  }
+
   const revealTargets = [
-    '.stat-item',
     '.about-text p',
     '.feature-item',
     '.menu-header',
@@ -1482,8 +1524,10 @@
     '.section-title',
   ];
 
+  const heroEl = document.querySelector('.hero');
   revealTargets.forEach(sel => {
     document.querySelectorAll(sel).forEach(el => {
+      if (heroEl && heroEl.contains(el)) return; // skip hero children
       if (!el.classList.contains('fade-up')) el.classList.add('fade-up');
     });
   });
