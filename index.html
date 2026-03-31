@@ -956,10 +956,22 @@
     /* ─── RESPONSIVE ──────────────────────────────────── */
     @media (max-width: 768px) {
       .nav-links { display: none; }
-      .hero-content { padding: 0 24px; }
-      .hero h1 { font-size: clamp(36px, 10vw, 52px); white-space: normal; }
-      .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-      .stat-item { border-right: none; }
+
+      /* Push hero flex content up so it never sits behind the stats bar */
+      .hero { padding-bottom: 90px; }
+      .hero-content { padding: 0 20px; }
+      .hero h1 { font-size: clamp(28px, 8vw, 42px); white-space: normal; }
+      .hero-logo-big img { height: 200px; }
+
+      /* Stats bar: flush to bottom edge, full width, no border-radius */
+      .stats-bar { bottom: 0; left: 0; right: 0; border-radius: 0; padding: 14px 0; }
+
+      /* Keep all 4 stats on one row with smaller compact text */
+      .stats-inner { grid-template-columns: repeat(4, 1fr); gap: 0; padding: 0 8px; }
+      .stat-item { padding: 0 6px; border-right: 1px solid rgba(255,255,255,0.12); }
+      .stat-item:last-child { border-right: none; }
+      .stat-number { font-size: 16px; white-space: nowrap; margin-bottom: 3px; }
+      .stat-label { font-size: 7px; letter-spacing: 0.8px; white-space: nowrap; }
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
       .about-img-float { display: none; }
       .menu-grid { grid-template-columns: 1fr; }
